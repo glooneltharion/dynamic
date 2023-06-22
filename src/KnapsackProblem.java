@@ -14,20 +14,20 @@ public class KnapsackProblem {
         System.out.println(knapsackTabu(weight, profit, w, n));
     }
 
-    public static int knapsack(int[] weight, int[] values, int w, int n) {
+    public static int knapsack(int[] weight, int[] profit, int w, int n) {
         if (w == 0 || n == 0) {
             return 0;
         }
 
         if (weight[n - 1] > w) {
-            return knapsack(weight, values, w, n - 1);
+            return knapsack(weight, profit, w, n - 1);
         }
 
-        return Math.max(values[n - 1] + knapsack(weight, values, w - weight[n - 1], n - 1),
-                knapsack(weight, values, w, n - 1));
+        return Math.max(profit[n - 1] + knapsack(weight, profit, w - weight[n - 1], n - 1),
+                knapsack(weight, profit, w, n - 1));
     }
 
-    private static Map<String, Integer> memo = new HashMap<>();
+    private static final Map<String, Integer> memo = new HashMap<>();
     public static int knapsackMemo(int[] weight, int[] profit, int w, int n) {
         if (w == 0 || n == 0) {
             return 0;
